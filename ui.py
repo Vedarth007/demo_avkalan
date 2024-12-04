@@ -233,6 +233,6 @@ class StreamlitApp:
         if submit:
             self.process_query(query, category, stakeholder, country, user, country_grouping)
 
-if _name_ == '_main_':
+if __name__ == "__main__":
     app = StreamlitApp()
     app.run()
