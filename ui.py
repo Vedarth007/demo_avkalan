@@ -89,7 +89,7 @@ class StreamlitApp:
             #Center logo layout
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            logo_path = "image.png"
+            logo_path = "./image.png"
             if os.path.exists(logo_path):
                 st.image(logo_path, width=100, use_container_width=True)
  
