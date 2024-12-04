@@ -178,10 +178,10 @@ class StreamlitApp:
                 return
 
             question_ids = [str(filtered_df.iloc[idx]['question_id']) for _, idx in search_results]
-            st.write("Retrieved Question IDs:", question_ids)
+            #st.write("Retrieved Question IDs:", question_ids)
 
             user_ids = st.session_state.backend.get_user_ids(stakeholder, user, country_grouping)
-            st.write("Retrieved User IDs:", user_ids)
+            #st.write("Retrieved User IDs:", user_ids)
 
             if not user_ids:
                 st.warning("No results found in the database")
@@ -199,7 +199,7 @@ class StreamlitApp:
             if not filtered_answers.empty:
                 answer = filtered_answers.iloc[0]['answer']
                   # Assuming 'answer' is the column name
-                st.write("answerss", filtered_answers)
+                #st.write("answerss", filtered_answers)
                 processed_answer = self.process_with_openai(answer)
                 st.write("Assistant:", processed_answer)
 
