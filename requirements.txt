@@ -1,4 +1,4 @@
-streamlit==1.17.0
+streamlit
 faiss-cpu==1.7.3
 sentence-transformers
 numpy==1.23.5
