@@ -48,7 +48,7 @@ class Backend:
 
     def load_questions(self):
         try:
-            df = pd.read_csv('data/WCG_data.csv', encoding='ISO-8859-1')
+            df = pd.read_csv('WCG_data.csv', encoding='ISO-8859-1')
             df.columns = df.columns.str.strip()
             df.rename(columns={'Question': 'question', 'Question Id': 'question_id'}, inplace=True)
             df['question'] = df['question'].str.strip()
@@ -138,7 +138,7 @@ class Backend:
 
     def get_user_ids(self, stakeholder, user, country_grouping):
         try:
-            users_df = pd.read_csv('data/user_table.csv')
+            users_df = pd.read_csv('user_table.csv')
             
             # If username is None, don't filter by 'username', just by stakeholder and country_grouping
             if user=='none':
@@ -172,7 +172,7 @@ class Backend:
     def get_answers(self, question_ids, user_ids):
             try:
                 # Read the answers from the CSV file
-                answers_df = pd.read_csv('data/answer_table.csv')
+                answers_df = pd.read_csv('answer_table.csv')
                 
                 # Filter answers based on the given question_ids and user_ids
                 filtered_answers = answers_df[
