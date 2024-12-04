@@ -208,6 +208,6 @@ class Backend:
                 self.logger.error(f"Error getting answers: {str(e)}")
                 raise
             
-    def _del_(self):
+    def __del__(self):
         if hasattr(self, 'conn'):
             self.conn.close()
