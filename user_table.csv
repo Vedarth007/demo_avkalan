@@ -1,0 +1,25 @@
+user_id,username,Country_grouping,stakeholder_type,market,position,national / regional,organization,moderator
+1,Aziz Zanaan,EU,GC_KOL,FR,None,None,None,None
+2,Peter Thuss-Patience,EU,GC_KOL,DE,None,None,None,None
+3,Javier Gallego Plazas,EU,GC_KOL,ES,None,None,None,None
+4,Giuseppe Aprile,EU,GC_KOL,IT,None,None,None,None
+5,Nicolas Girard,EU,NSCLC_KOL,FR,None,None,None,None
+6,Christian Grohe,EU,NSCLC_KOL,DE,None,None,None,None
+7,Mariano Provencio Pulla,EU,NSCLC_KOL,ES,None,None,None,None
+8,Arsela Prelaj,EU,NSCLC_KOL,IT,None,None,None,None
+9,Eric Baseilhac,FR,FR_Payer,FR,None,None,None,None
+10,Jean-Francois Bergmann,FR,FR_Payer,FR,None,None,None,None
+11,Marc Bardou,FR,FR_Payer,FR,None,None,None,None
+12,Jean-Marc Grognet,FR,FR_Payer,FR,None,None,None,None
+13,Stefan Lhachimi,DE,DE_Payer,DE,None,None,None,None
+14,Peter Kolominsky-Rabas,DE,DE_Payer,DE,None,None,None,None
+15,Maywald,DE,DE_Payer,DE,None,None,None,None
+16,Flume,DE,DE_Payer,DE,None,None,None,None
+17,Claudio Ferri,IT,IT_Payer,IT,None,None,None,None
+18,Fabrizio Gianfrate,IT,IT_Payer,IT,None,None,None,None
+19,Stefano Capri,IT,IT_Payer,IT,None,None,None,None
+20,Entela Xoxi,IT,IT_Payer,IT,None,None,None,None
+21,Josep Darba,ES,ES_Payer,ES,None,None,None,None
+22,Mestre Ferrandiz,ES,ES_Payer,ES,None,None,None,None
+23,Joan Antoni Valles Callol,ES,ES_Payer,ES,None,None,None,None
+24,Jaime Espin,ES,ES_Payer,ES,None,None,None,None
