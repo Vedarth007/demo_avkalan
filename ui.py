@@ -3,6 +3,23 @@ import os
 from backend import Backend
 import openai
 
+import subprocess
+import sys
+
+# List of required packages
+required_packages = ['faiss-cpu', 'openai', 'streamlit', 'pandas', 'numpy']
+
+# Function to install missing packages
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Check and install missing packages
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        install(package)
+
 
 openai.api_key = st.secrets["API_KEY"]
 
