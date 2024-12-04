@@ -197,7 +197,7 @@ class StreamlitApp:
 
             # Pass the first answer to OpenAI for processing
             if not filtered_answers.empty:
-                answer = filtered_answers.iloc[0]['answer']
+                answer = '\n'.join(filtered_answers['answer'].tolist())
                   # Assuming 'answer' is the column name
                 #st.write("answerss", filtered_answers)
                 processed_answer = self.process_with_openai(answer)
