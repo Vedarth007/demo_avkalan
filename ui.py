@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets["API_KEY"]
 
 class StreamlitApp:
-    def _init_(self):
+    def __init__(self):
         # Ensure session state variables are initialized only once
         if 'backend' not in st.session_state:
             st.session_state.backend = Backend()
