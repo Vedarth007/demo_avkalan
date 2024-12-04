@@ -5,14 +5,7 @@ import sqlite3
 from sentence_transformers import SentenceTransformer
 import logging
 
-import os
-import subprocess
 
-try:
-    import faiss
-except ImportError:
-    subprocess.run(["pip", "install", "faiss-cpu"], check=True)
-    import faiss
 
 class Backend:
     def __init__(self, db_path='database.db'):
