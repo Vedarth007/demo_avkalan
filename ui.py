@@ -2,7 +2,10 @@ import streamlit as st
 import os
 from backend import Backend
 import openai
- 
+
+# Install faiss-cpu at runtime
+os.system('pip install faiss-cpu')
+
 openai.api_key = st.secrets["API_KEY"]
 
 class StreamlitApp:
