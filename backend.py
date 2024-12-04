@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 import logging
 
 class Backend:
-    def _init_(self, db_path='database.db'):
+    def __init__(self, db_path='database.db'):
         self.logger = self.setup_logging()
         self.db_path = db_path
         self.model = self.load_model()
