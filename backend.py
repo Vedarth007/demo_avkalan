@@ -5,10 +5,8 @@ import sqlite3
 from sentence_transformers import SentenceTransformer
 import logging
 
-
-
 class Backend:
-    def __init__(self, db_path='database.db'):
+    def _init_(self, db_path='database.db'):
         self.logger = self.setup_logging()
         self.db_path = db_path
         self.model = self.load_model()
@@ -50,7 +48,7 @@ class Backend:
 
     def load_questions(self):
         try:
-            df = pd.read_csv('WCG_data.csv', encoding='ISO-8859-1')
+            df = pd.read_csv('data/WCG_data.csv', encoding='ISO-8859-1')
             df.columns = df.columns.str.strip()
             df.rename(columns={'Question': 'question', 'Question Id': 'question_id'}, inplace=True)
             df['question'] = df['question'].str.strip()
@@ -92,13 +90,17 @@ class Backend:
             self.logger.error(f"Error setting up vector index: {str(e)}")
             raise
 
-    def filter_questions(self, category, country):
+    def filter_questions(self, category):
         try:
+            if category.lower() == 'all':
+                query = "SELECT * FROM questions"
+                return pd.read_sql(query, self.conn)
+                
             query = """
             SELECT * FROM questions 
-            WHERE category = ? AND country = ?
+            WHERE category = :category 
             """
-            return pd.read_sql(query, self.conn, params=(category, country))
+            return pd.read_sql(query, self.conn, params={'category': category})
         except Exception as e:
             self.logger.error(f"Error filtering questions: {str(e)}")
             raise
@@ -138,24 +140,42 @@ class Backend:
     #         self.logger.error(f"Error getting user IDs: {str(e)}")
     #         raise
 
-    def get_user_ids(self, stakeholder, user, country_grouping):
+    # def get_user_ids(self, stakeholder, user, country_grouping):
+    #     try:
+    #         users_df = pd.read_csv('data/user_table.csv')
+            
+    #         # If username is None, don't filter by 'username', just by stakeholder and country_grouping
+    #         if user=='none':
+    #             filtered_df = users_df[
+    #                 (users_df['stakeholder_type'] == stakeholder) & 
+    #                 (users_df['Country_grouping'] == country_grouping)
+    #             ]
+    #         else:
+    #             filtered_df = users_df[
+    #                 (users_df['stakeholder_type'] == stakeholder) & 
+    #                 (users_df['Country_grouping'] == country_grouping) & 
+    #                 (users_df['username'] == user)
+    #             ]
+            
+    #         return filtered_df['user_id'].tolist()
+    #     except Exception as e:
+    #         self.logger.error(f"Error getting user IDs: {str(e)}")
+    #         raise
+    def get_user_ids(self, stakeholder=None, user=None, country_grouping=None):
         try:
-            users_df = pd.read_csv('user_table.csv')
+            users_df = pd.read_csv('data/user_table.csv')
             
-            # If username is None, don't filter by 'username', just by stakeholder and country_grouping
-            if user=='none':
-                filtered_df = users_df[
-                    (users_df['stakeholder_type'] == stakeholder) & 
-                    (users_df['Country_grouping'] == country_grouping)
-                ]
-            else:
-                filtered_df = users_df[
-                    (users_df['stakeholder_type'] == stakeholder) & 
-                    (users_df['Country_grouping'] == country_grouping) & 
-                    (users_df['username'] == user)
-                ]
-            
+            conditions = []
+            if stakeholder and stakeholder != 'All':
+                conditions.append(users_df['stakeholder_type'] == stakeholder)
+            if country_grouping and country_grouping != 'All':
+                conditions.append(users_df['Country_grouping'] == country_grouping)
+            if user and user != 'All':
+                conditions.append(users_df['username'] == user)
+                
+            filtered_df = users_df if not conditions else users_df[pd.concat(conditions, axis=1).all(axis=1)]
             return filtered_df['user_id'].tolist()
+            
         except Exception as e:
             self.logger.error(f"Error getting user IDs: {str(e)}")
             raise
@@ -174,7 +194,7 @@ class Backend:
     def get_answers(self, question_ids, user_ids):
             try:
                 # Read the answers from the CSV file
-                answers_df = pd.read_csv('answer_table.csv')
+                answers_df = pd.read_csv('data/answer_table.csv')
                 
                 # Filter answers based on the given question_ids and user_ids
                 filtered_answers = answers_df[
@@ -188,6 +208,6 @@ class Backend:
                 self.logger.error(f"Error getting answers: {str(e)}")
                 raise
             
-    def __del__(self):
+    def _del_(self):
         if hasattr(self, 'conn'):
             self.conn.close()
