@@ -129,7 +129,7 @@ class StreamlitApp:
 
         col1, col2, col3 = st.columns(3)
         with col2:
-            logo_path = "/Users/jyotscharan/Desktop/project copy/PHOTO-2024-12-04-20-48-13.jpg"
+            logo_path = "./WCG Expands Statistical Consulting Solutions _ Contract Pharma.png"
             if os.path.exists(logo_path):
                 st.image(logo_path, width=200, use_container_width=True)
 
