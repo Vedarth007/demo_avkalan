@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from backend import Backend
 import openai
+from sentence_transformers import SentenceTransformer
 
 openai.api_key = st.secrets["API_KEY"]
 
@@ -232,6 +233,9 @@ class StreamlitApp:
         submit = st.button("Search")
         if submit:
             self.process_query(query, category, stakeholder, country, user, country_grouping)
+
+    def load_model(self):
+        return SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cpu')
 
 if __name__ == '__main__':
     app = StreamlitApp()
