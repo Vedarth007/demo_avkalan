@@ -25,7 +25,7 @@ class Backend:
 
     def load_model(self):
         try:
-            return SentenceTransformer('all-MiniLM-L6-v2')
+            return SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         except Exception as e:
             self.logger.error(f"Error loading model: {str(e)}")
             raise
